@@ -9,21 +9,13 @@ magenta=`tput setaf 5`
 reset=`tput sgr0`
  
 read -p "Enter domain name : " DOM
- 
-if [ -d ~/Desktop/ ]
+
+
+if [ -d ~/$DOM/Content_Discovery ]
 then
   echo " "
 else
-  mkdir ~/Desktop
-fi
- 
-
-
-if [ -d ~/Desktop/$DOM/Content_Discovery ]
-then
-  echo " "
-else
-  mkdir ~/Desktop/$DOM/Content_Discovery
+  mkdir ~/$DOM/Content_Discovery
  
 fi
  
@@ -34,7 +26,7 @@ echo " "
 #wordlist
 echo "${yellow} ---------------------------------- xxxxxxxx ---------------------------------- ${reset}"
 echo " "
-if [ -f ~/Desktop/critical_files.txt ]
+if [ -f /root/wordlist/dicc.txt ]
 then
  echo " "
 else
@@ -46,9 +38,9 @@ fi
 if [ -f /usr/bin/feroxbuster ]
 then
  echo "${magenta} [+] Running Feroxbuster for content discovery${reset}"
- for url in $(cat ~/Desktop/$DOM/Subdomains/all-alive-subs.txt);do
+ for url in $(cat /root/recon/darwinex.com/subdomain/good/R_allsub.txt);do
  reg=$(echo $url | sed -e 's;https\?://;;' | sed -e 's;/.*$;;')
- feroxbuster --url $url -w ~/Desktop/critical_files.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output ~/Desktop/$DOM/Content_Discovery/content_discovery_result.txt
+ feroxbuster --url $url -w /root/wordlist/dicc.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output ~/Desktop/$DOM/Content_Discovery/content_discovery_result.txt
 done
 else
  echo "${blue} [+] Installing Feroxbuster ${reset}"
@@ -56,9 +48,9 @@ else
  unzip ~/Desktop/tools/feroxbuster/x86_64-linux-feroxbuster.zip -d ~/go/bin/
  chmod 777 ~/go/bin/feroxbuster
  echo "${magenta} [+] Running Feroxbuster for content discovery${reset}"
- for url in $(cat ~/Desktop/$DOM/Subdomains/all-alive-subs.txt);do
+ for url in $(cat /root/recon/darwinex.com/subdomain/good/R_allsub.txt);do
  reg=$(echo $url | sed -e 's;https\?://;;' | sed -e 's;/.*$;;')
- feroxbuster --url $url -w ~/Desktop/critical_files.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output ~/Desktop/$DOM/Content_Discovery/content_discovery_result.txt
+ feroxbuster --url $url -w /root/wordlist/dicc.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output ~/Desktop/$DOM/Content_Discovery/content_discovery_result.txt
 done
 fi
 
