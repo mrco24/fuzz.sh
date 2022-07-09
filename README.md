@@ -1,1 +1,1 @@
-# fuzz.sh
+# fuzz
