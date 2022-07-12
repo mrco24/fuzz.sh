@@ -38,7 +38,7 @@ fi
 if [ -f /usr/bin/feroxbuster ]
 then
  echo "${magenta} [+] Running Feroxbuster for content discovery${reset}"
- for url in $(cat /root/recon/sub.txt);do
+ for url in $(cat /root/recon/bitdefender.com/subdomain/good/active_subdomain.txt);do
  reg=$(echo $url | sed -e 's;https\?://;;' | sed -e 's;/.*$;;')
  feroxbuster --url $url -w /root/Tools/dicc.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output /root/recon/$domain/Content_Discovery/content_discovery_result.txt
 done
@@ -48,7 +48,7 @@ else
  unzip ~/Desktop/tools/feroxbuster/x86_64-linux-feroxbuster.zip -d ~/go/bin/
  chmod 777 ~/go/bin/feroxbuster
  echo "${magenta} [+] Running Feroxbuster for content discovery${reset}"
- for url in $(cat /root/recon/sub.txt);do
+ for url in $(cat /root/recon/bitdefender.com/subdomain/good/active_subdomain.txt);do
  reg=$(echo $url | sed -e 's;https\?://;;' | sed -e 's;/.*$;;')
  feroxbuster --url $url -w /root/Tools/dicc.txt -x php asp aspx jsp py txt conf config bak backup swp old db zip sql --depth 3 --threads 300 --output /root/recon/$domain/Content_Discovery/content_discovery_result.txt
 done
